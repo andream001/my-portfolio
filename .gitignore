@@ -1,24 +1,64 @@
 # Logs
 logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Build files generated from Parcel
-dist
-
-# Dependency directories
+# Dependencies
 node_modules/
+/.pnp
+.pnp.js
 
-# Optional npm cache directory
-.npm
+# Testing
+/coverage
 
-# Optional eslint cache
-.eslintcache
+# Next.js
+/.next/
+/out/
 
-# dotenv environment variables file
+# Production
+/build
+/dist
+
+# Environment variables
 .env
+.env*.local
 .env.test
 
-# parcel-bundler cache (https://parceljs.org/)
-.parcel-cache
+# Vercel
+.vercel
 
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
+
+# Old build system (Parcel)
+.parcel-cache
+.cache
+
+# Optional npm cache
+.npm
+.eslintcache
+
+# OS
+Thumbs.db
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+*.sln
+*.slnx
