@@ -35,9 +35,10 @@ export default function RootLayout({
         <DynamicBackground
           particleCount={60}
           particleColor="rgba(168, 85, 247, 0.8)"
-          connectionColor="rgba(107, 33, 168, 0.5)"
+          connectionColor="rgba(124, 58, 237, 0.5)"
           connectionDistance={150}
           interactive={true}
+          darkMode={true}
         />
         <Header />
         <main>{children}</main>

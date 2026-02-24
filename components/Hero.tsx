@@ -17,12 +17,12 @@ const letterVariants = {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-950 via-purple-900 to-slate-950">
-        <div className="absolute w-96 h-96 bg-purple-700/40 rounded-full blur-3xl -top-40 -left-40 animate-pulse" />
-        <div className="absolute w-96 h-96 bg-purple-800/30 rounded-full blur-3xl -bottom-40 -right-40 animate-pulse delay-1000" />
-        <div className="absolute w-96 h-96 bg-purple-600/20 rounded-full blur-3xl top-1/2 left-1/2 animate-pulse delay-500" />
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent">
+      {/* Gradient Overlay - subtle */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/40 via-transparent to-blue-950/40">
+        <div className="absolute w-96 h-96 bg-purple-800/10 rounded-full blur-3xl -top-40 -left-40 animate-pulse" />
+        <div className="absolute w-96 h-96 bg-purple-900/5 rounded-full blur-3xl -bottom-40 -right-40 animate-pulse delay-1000" />
+        <div className="absolute w-96 h-96 bg-purple-700/5 rounded-full blur-3xl top-1/2 left-1/2 animate-pulse delay-500" />
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-5xl">
@@ -82,7 +82,7 @@ export default function Hero() {
             href="#projects"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white text-slate-900 px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all shadow-lg"
+            className="bg-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-700 transition-all shadow-lg hover:shadow-purple-500/50"
           >
             Ver Projetos
           </motion.a>
@@ -90,7 +90,7 @@ export default function Hero() {
             href="#contact"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all"
+            className="border-2 border-purple-500 text-purple-200 px-8 py-4 rounded-full font-semibold hover:bg-purple-600/20 transition-all"
           >
             Contato
           </motion.a>

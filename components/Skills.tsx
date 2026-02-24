@@ -46,10 +46,10 @@ const skillVariants = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-28 bg-gradient-to-b from-purple-950 to-purple-900 text-white relative overflow-hidden">
+    <section id="skills" className="py-28 bg-transparent text-white relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-700/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-800/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-700/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Section Header */}
@@ -60,10 +60,10 @@ export default function Skills() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
             Minhas Habilidades
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-purple-300 max-w-2xl mx-auto">
             Tecnologias e ferramentas que utilizo para transformar ideias em realidade
           </p>
         </motion.div>
@@ -85,16 +85,16 @@ export default function Skills() {
                   y: -8,
                   rotate: 5,
                 }}
-                className="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/30 transition-all cursor-pointer group"
+                className="flex flex-col items-center justify-center p-6 bg-purple-800/20 backdrop-blur-xl rounded-2xl border border-purple-700/40 hover:border-purple-500/70 hover:bg-purple-700/30 transition-all cursor-pointer group"
               >
-                <div className="mb-4 p-4 bg-white/5 rounded-xl group-hover:bg-white/10 transition-colors">
+                <div className="mb-4 p-4 bg-purple-800/30 rounded-xl group-hover:bg-purple-700/40 transition-colors">
                   <Icon
                     size={48}
                     style={{ color: skill.color }}
                     className="group-hover:scale-110 transition-transform"
                   />
                 </div>
-                <span className="text-sm font-medium text-gray-300 text-center">
+                <span className="text-sm font-medium text-purple-300 text-center">
                   {skill.name}
                 </span>
               </motion.div>
@@ -110,17 +110,17 @@ export default function Skills() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center"
         >
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-purple-300 mb-8">
             💡 Vou encontrar e entregar a melhor solução de tecnologia para seu negócio
           </p>
-          <p className="text-lg text-gray-400 mb-8">
+          <p className="text-lg text-purple-400 mb-8">
             Aberto para colaborações & oportunidades freelance
           </p>
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:shadow-lg transition-all"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-full font-semibold hover:shadow-xl hover:shadow-purple-600/50 transition-all"
           >
             Vamos Conversar
           </motion.a>

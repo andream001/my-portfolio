@@ -9,6 +9,8 @@ interface Particle {
   vy: number
   radius: number
   color: string
+  originalVx: number
+  originalVy: number
 }
 
 interface Props {
@@ -17,19 +19,22 @@ interface Props {
   connectionColor?: string
   connectionDistance?: number
   interactive?: boolean
+  darkMode?: boolean
 }
 
 export default function DynamicBackground({
   particleCount = 50,
-  particleColor = 'rgba(168, 85, 247, 0.8)',
-  connectionColor = 'rgba(107, 33, 168, 0.5)',
+  particleColor = 'rgba(124, 58, 237, 0.7)',
+  connectionColor = 'rgba(91, 29, 141, 0.4)',
   connectionDistance = 150,
   interactive = true,
+  darkMode = false,
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const mouseRef = useRef({ x: 0, y: 0 })
   const animationRef = useRef<number>(0)
+  const [isMouseInside, setIsMouseInside] = useState(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -50,12 +55,16 @@ export default function DynamicBackground({
     const initializeParticles = () => {
       const particles: Particle[] = []
       for (let i = 0; i < particleCount; i++) {
+        const vx = (Math.random() - 0.5) * 0.3
+        const vy = (Math.random() - 0.5) * 0.3
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          radius: Math.random() * 2 + 1,
+          vx: vx,
+          vy: vy,
+          originalVx: vx,
+          originalVy: vy,
+          radius: Math.random() * 2 + 0.5,
           color: particleColor,
         })
       }
@@ -67,43 +76,56 @@ export default function DynamicBackground({
     const handleMouseMove = (e: MouseEvent) => {
       if (interactive) {
         mouseRef.current = { x: e.clientX, y: e.clientY }
+        setIsMouseInside(true)
       }
     }
+
+    const handleMouseLeave = () => {
+      setIsMouseInside(false)
+    }
+
     window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseleave', handleMouseLeave)
 
     // Animation loop
     const animate = () => {
-      // Clear canvas with fade effect
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
+      // Clear canvas completely (no trail effect)
+      ctx.fillStyle = 'rgba(0, 0, 0, 1)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Update particles
       particlesRef.current.forEach((particle) => {
+        // Gradual return to original velocity if mouse not near
+        if (!isMouseInside) {
+          particle.vx += (particle.originalVx - particle.vx) * 0.01
+          particle.vy += (particle.originalVy - particle.vy) * 0.01
+        }
+
         // Movement
         particle.x += particle.vx
         particle.y += particle.vy
 
-        // Bounce off edges
+        // Bounce off edges with damping
         if (particle.x < 0 || particle.x > canvas.width) {
-          particle.vx *= -1
+          particle.vx *= -0.9
           particle.x = Math.max(0, Math.min(canvas.width, particle.x))
         }
         if (particle.y < 0 || particle.y > canvas.height) {
-          particle.vy *= -1
+          particle.vy *= -0.9
           particle.y = Math.max(0, Math.min(canvas.height, particle.y))
         }
 
-        // Mouse interaction
-        if (interactive) {
-          const dx = mouseRef.current.x - particle.x
-          const dy = mouseRef.current.y - particle.y
+        // Mouse interaction - repel from cursor
+        if (interactive && isMouseInside) {
+          const dx = particle.x - mouseRef.current.x
+          const dy = particle.y - mouseRef.current.y
           const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 200) {
+          if (distance < 200 && distance > 0) {
             const angle = Math.atan2(dy, dx)
             const force = (200 - distance) / 200
-            particle.vx -= Math.cos(angle) * force * 0.5
-            particle.vy -= Math.sin(angle) * force * 0.5
+            particle.vx += Math.cos(angle) * force * 1.5
+            particle.vy += Math.sin(angle) * force * 1.5
           }
         }
 
@@ -115,7 +137,6 @@ export default function DynamicBackground({
       })
 
       // Draw connections
-      ctx.strokeStyle = connectionColor
       ctx.lineWidth = 0.5
 
       for (let i = 0; i < particlesRef.current.length; i++) {
@@ -128,15 +149,8 @@ export default function DynamicBackground({
           const distance = Math.sqrt(dx * dx + dy * dy)
 
           if (distance < connectionDistance) {
-            const opacity = 1 - distance / connectionDistance
-            // Extrai os valores RGB e aplica nova opacidade
-            const rgbMatch = connectionColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
-            if (rgbMatch) {
-              const [, r, g, b] = rgbMatch
-              ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.5 * opacity})`
-            } else {
-              ctx.strokeStyle = connectionColor
-            }
+            const opacity = (1 - distance / connectionDistance) * 0.6
+            ctx.strokeStyle = connectionColor.replace(/[\d.]+\)$/, `${opacity})`)
             ctx.beginPath()
             ctx.moveTo(p1.x, p1.y)
             ctx.lineTo(p2.x, p2.y)
@@ -154,15 +168,18 @@ export default function DynamicBackground({
       cancelAnimationFrame(animationRef.current)
       window.removeEventListener('resize', resizeCanvas)
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [particleCount, particleColor, connectionColor, connectionDistance, interactive])
+  }, [particleCount, particleColor, connectionColor, connectionDistance, interactive, isMouseInside])
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-screen -z-10"
       style={{
-        background: 'radial-gradient(circle at center, #1e1b4b 0%, #0f0a1e 100%)',
+        background: darkMode
+          ? 'radial-gradient(circle at center, #0f172a 0%, #0a0e27 100%)'
+          : 'radial-gradient(circle at center, #1a0f2e 0%, #0a0515 100%)',
       }}
     />
   )

@@ -1,4 +1,4 @@
-import Hero from '@/components/Hero'
+import HeroV7 from '@/components/HeroV7-DynamicCards'
 import About from '@/components/About'
 import Projects from '@/components/Projects'
 import Skills from '@/components/Skills'
@@ -8,7 +8,7 @@ import Contact from '@/components/Contact'
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroV7 />
       <About />
       <Projects />
       <Skills />

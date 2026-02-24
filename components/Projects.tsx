@@ -75,7 +75,7 @@ const projectVariants = {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 bg-gradient-to-b from-gray-50 to-white">
+    <section id="projects" className="py-28 bg-transparent">
       <div className="container mx-auto px-6 max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -85,10 +85,10 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-serif bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-serif bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
             Projetos em Destaque
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-purple-300 max-w-2xl mx-auto leading-relaxed">
             Uma seleção curada de projetos que demonstram minha expertise em design e desenvolvimento
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ export default function Projects() {
                 whileHover={{ scale: 1.02 }}
                 className="w-full md:w-1/2"
               >
-                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-400/20 to-blue-400/20 border border-white/20">
+                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-700/30 to-purple-900/40 border border-purple-700/50">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-7xl font-bold text-white/10 mb-4">
@@ -136,19 +136,19 @@ export default function Projects() {
                     transition={{ delay: 0.2 }}
                     className="flex items-center gap-4 mb-4"
                   >
-                    <span className="text-6xl font-bold text-gray-200">
+                    <span className="text-6xl font-bold text-purple-300">
                       {project.id}
                     </span>
-                    <span className="inline-block text-xs font-bold text-purple-600 bg-purple-100 px-4 py-2 rounded-full uppercase tracking-wider">
+                    <span className="inline-block text-xs font-bold text-purple-200 bg-purple-800/60 px-4 py-2 rounded-full uppercase tracking-wider">
                       {project.category}
                     </span>
                   </motion.div>
 
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     {project.title}
                   </h3>
 
-                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  <p className="text-lg text-purple-300 leading-relaxed mb-6">
                     {project.description}
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export default function Projects() {
                     <motion.span
                       key={tag}
                       whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1 bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-gradient-to-r from-purple-700/60 to-purple-800/60 text-purple-200 rounded-full text-sm font-medium"
                     >
                       {tag}
                     </motion.span>
@@ -175,7 +175,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full hover:shadow-lg transition-all"
+                      className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-600/50 transition-all"
                     >
                       <FiGithub size={20} />
                       <span>Código</span>
@@ -188,7 +188,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-50 transition-all"
+                      className="flex items-center gap-2 px-6 py-3 border-2 border-purple-500 text-purple-300 rounded-full hover:bg-purple-700/30 transition-all"
                     >
                       <FiExternalLink size={20} />
                       <span>Demo</span>
@@ -212,7 +212,7 @@ export default function Projects() {
             href="https://github.com/andream001?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold text-lg transition-colors"
+            className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-semibold text-lg transition-colors"
           >
             Explorar todos os projetos no GitHub
             <FiExternalLink className="group-hover:translate-x-1 transition-transform" />

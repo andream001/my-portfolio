@@ -11,7 +11,7 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-28 bg-white">
+    <section id="about" className="py-28 bg-transparent">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -20,7 +20,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           {/* Section Title */}
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-20 font-serif bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-20 font-serif bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
             Sobre Mim
           </h2>
 
@@ -33,9 +33,9 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20"></div>
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-400">Sua foto aqui</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 to-purple-800/30"></div>
+              <div className="w-full h-full bg-purple-900/50 flex items-center justify-center border border-purple-700/50">
+                <span className="text-purple-400">Sua foto aqui</span>
               </div>
             </motion.div>
 
@@ -48,22 +48,22 @@ export default function About() {
               className="space-y-8"
             >
               <div>
-                <h3 className="text-4xl font-bold text-gray-900 mb-4">
+                <h3 className="text-4xl font-bold text-white mb-4">
                   Construindo Experiências Digitais
                 </h3>
-                <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                <p className="text-lg text-purple-300 leading-relaxed mb-4">
                   Sou um desenvolvedor web apaixonado por criar experiências digitais únicas e funcionais. 
                   Com expertise em design moderno e desenvolvimento front-end, transformo ideias em realidade 
                   através de código limpo e interfaces intuitivas.
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-purple-300 leading-relaxed">
                   Especializado em React, Next.js e tecnologias web modernas, estou sempre em busca de novos 
                   desafios que me permitam crescer e criar soluções inovadoras.
                 </p>
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-200">
+              <div className="grid grid-cols-2 gap-4 pt-8 border-t border-purple-700/50">
                 {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
@@ -71,15 +71,15 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 + index * 0.1 }}
-                    className="p-4 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl"
+                    className="p-4 bg-gradient-to-br from-purple-700/40 to-purple-900/40 rounded-xl border border-purple-600/30"
                   >
-                    <div className="text-3xl font-bold text-purple-600">
+                    <div className="text-3xl font-bold text-purple-200">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-gray-600 mt-1">
+                    <div className="text-sm text-purple-300 mt-1">
                       {stat.label}
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-purple-400">
                       {stat.unit}
                     </div>
                   </motion.div>
@@ -90,17 +90,17 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4 pt-4">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="p-4 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl cursor-pointer"
+                  className="p-4 bg-gradient-to-br from-purple-700/50 to-purple-800/40 rounded-xl cursor-pointer border border-purple-600/40"
                 >
-                  <h4 className="font-bold text-purple-900 mb-1">Localização</h4>
-                  <p className="text-purple-700">Brasil</p>
+                  <h4 className="font-bold text-purple-200 mb-1">Localização</h4>
+                  <p className="text-purple-300">Brasil</p>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="p-4 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl cursor-pointer"
+                  className="p-4 bg-gradient-to-br from-purple-700/50 to-purple-800/40 rounded-xl cursor-pointer border border-purple-600/40"
                 >
-                  <h4 className="font-bold text-blue-900 mb-1">Status</h4>
-                  <p className="text-blue-700">Aberto para trabalhar</p>
+                  <h4 className="font-bold text-purple-200 mb-1">Status</h4>
+                  <p className="text-purple-300">Aberto para trabalhar</p>
                 </motion.div>
               </div>
             </motion.div>

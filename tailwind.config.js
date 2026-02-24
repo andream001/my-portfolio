@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#6B21A8',    // Roxo escuro (purple-800)
-        secondary: '#9333EA',  // Roxo médio (purple-600)
-        accent: '#A855F7',     // Roxo claro (purple-500)
+        primary: '#3F0F63',    // Roxo muito escuro (roxo-950)
+        secondary: '#5B1D8D',  // Roxo escuro (roxo-900)
+        accent: '#7C3AED',     // Roxo médio-escuro (roxo-800)
       },
       fontFamily: {
         sans: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
