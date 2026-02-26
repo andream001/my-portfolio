@@ -1,224 +1,253 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiGithub, FiExternalLink } from 'react-icons/fi'
+import { FiGithub, FiExternalLink, FiArrowRight } from 'react-icons/fi'
 
 const projects = [
   {
     id: '01',
-    category: 'Web App',
+    category: 'Frontend',
+    tag: 'Destaque',
     title: 'Portfolio Website',
-    description:
-      'Website de portfólio moderno construído com Next.js, TypeScript e Tailwind CSS com animações suaves e design responsivo.',
-    image: '/images/projects/portfolio.jpg',
+    description: 'Next.js 14, TypeScript e Tailwind CSS. AnimaÃ§Ãµes com Framer Motion e design totalmente responsivo.',
     github: 'https://github.com/andream001/my-portfolio',
     demo: 'https://andrebunhak.vercel.app',
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion'],
+    featured: true,
+    accent: 'from-purple-500 to-blue-500',
   },
   {
     id: '02',
-    category: 'Web Development',
+    category: 'E-commerce',
+    tag: 'Recente',
     title: 'Plataforma E-commerce',
-    description:
-      'Plataforma e-commerce completa com carrinho de compras, integração de pagamento e dashboard administrativo.',
-    image: '/images/projects/ecommerce.jpg',
+    description: 'Carrinho, pagamento via Stripe e painel admin completo.',
     github: 'https://github.com/andream001',
     demo: '#',
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+    tags: ['React', 'Node.js', 'MongoDB'],
+    featured: false,
+    accent: 'from-pink-500 to-purple-500',
   },
   {
     id: '03',
     category: 'Design',
+    tag: 'Branding',
     title: 'Identidade de Marca',
-    description:
-      'Design completo de identidade de marca incluindo logo, paleta de cores, tipografia e materiais de marketing.',
-    image: '/images/projects/branding.jpg',
+    description: 'Logo, paleta de cores e materiais de marketing criados do zero.',
     github: '',
     demo: '#',
-    tags: ['Figma', 'Illustrator', 'Branding', 'UI/UX'],
+    tags: ['Figma', 'Branding', 'UI/UX'],
+    featured: false,
+    accent: 'from-orange-500 to-pink-500',
   },
   {
     id: '04',
-    category: 'Mobile App',
+    category: 'Mobile',
+    tag: 'App',
     title: 'Gestor de Tarefas',
-    description:
-      'Aplicação mobile multiplataforma para gerenciamento de tarefas com sincronização em tempo real e recursos de colaboração.',
-    image: '/images/projects/taskapp.jpg',
+    description: 'App multiplataforma com Firebase e colaboraÃ§Ã£o em tempo real.',
     github: 'https://github.com/andream001',
     demo: '#',
-    tags: ['React Native', 'Firebase', 'Redux', 'Mobile'],
+    tags: ['React Native', 'Firebase'],
+    featured: false,
+    accent: 'from-green-500 to-cyan-500',
+  },
+  {
+    id: '05',
+    category: 'Backend',
+    tag: 'API',
+    title: 'REST API EscalÃ¡vel',
+    description: 'MicrosserviÃ§os com JWT, rate limiting e documentaÃ§Ã£o Swagger.',
+    github: 'https://github.com/andream001',
+    demo: '#',
+    tags: ['Node.js', 'Express', 'Docker'],
+    featured: false,
+    accent: 'from-blue-500 to-cyan-400',
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-}
-
-const projectVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-}
+const featured = projects.find((p) => p.featured)!
+const rest = projects.filter((p) => !p.featured)
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 bg-transparent">
-      <div className="container mx-auto px-6 max-w-6xl">
-        {/* Section Header */}
+    <section id="projects" className="py-14 bg-transparent">
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-end justify-between mb-8 pb-4 border-b border-red-800/40"
+        >
+          <div>
+            <p className="text-xs font-bold text-red-400 uppercase tracking-widest mb-1">
+              PortfÃ³lio Â· {new Date().getFullYear()}
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black font-serif text-white leading-none">
+              Projetos
+            </h2>
+          </div>
+          <motion.a
+            href="https://github.com/andream001?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ x: 4 }}
+            className="hidden sm:flex items-center gap-2 text-red-400 hover:text-white text-sm font-medium transition-colors"
+          >
+            Ver todos <FiArrowRight size={14} />
+          </motion.a>
+        </motion.div>
+
+        {/* Featured Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.6 }}
+          className="mb-6"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-serif bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-            Projetos em Destaque
-          </h2>
-          <p className="text-xl text-purple-300 max-w-2xl mx-auto leading-relaxed">
-            Uma seleção curada de projetos que demonstram minha expertise em design e desenvolvimento
-          </p>
-        </motion.div>
+          <div className="group relative rounded-2xl overflow-hidden border border-red-800/40 hover:border-red-600/60 bg-red-950/20 hover:bg-red-950/30 p-6 sm:p-8 transition-all">
+            <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${featured.accent}`} />
+            <span className="absolute top-4 right-6 text-8xl font-black text-white/[0.04] font-serif select-none leading-none pointer-events-none">
+              {featured.id}
+            </span>
 
-        {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="space-y-32"
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              variants={projectVariants}
-              className={`flex flex-col ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              } gap-12 items-center`}
-            >
-              {/* Image */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="w-full md:w-1/2"
-              >
-                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-700/30 to-purple-900/40 border border-purple-700/50">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-7xl font-bold text-white/10 mb-4">
-                        {project.id}
-                      </div>
-                      <p className="text-white/40">{project.title}</p>
-                    </div>
-                  </div>
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className={`px-2 py-0.5 text-xs font-black uppercase tracking-wider bg-gradient-to-r ${featured.accent} text-white rounded`}>
+                    {featured.tag}
+                  </span>
+                  <span className="text-xs font-bold text-red-400 uppercase tracking-wider">
+                    {featured.category}
+                  </span>
                 </div>
-              </motion.div>
-
-              {/* Content */}
-              <div className="w-full md:w-1/2 space-y-6">
-                <div>
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="flex items-center gap-4 mb-4"
-                  >
-                    <span className="text-6xl font-bold text-purple-300">
-                      {project.id}
-                    </span>
-                    <span className="inline-block text-xs font-bold text-purple-200 bg-purple-800/60 px-4 py-2 rounded-full uppercase tracking-wider">
-                      {project.category}
-                    </span>
-                  </motion.div>
-
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-lg text-purple-300 leading-relaxed mb-6">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Tags */}
+                <h3 className="text-2xl sm:text-3xl font-black font-serif text-white mb-3 group-hover:text-red-100 transition-colors">
+                  {featured.title}
+                </h3>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 max-w-xl">
+                  {featured.description}
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <motion.span
-                      key={tag}
-                      whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1 bg-gradient-to-r from-purple-700/60 to-purple-800/60 text-purple-200 rounded-full text-sm font-medium"
-                    >
+                  {featured.tags.map((tag) => (
+                    <span key={tag} className="px-2 py-0.5 bg-red-900/40 text-red-200 rounded text-xs font-medium">
                       {tag}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
+              </div>
 
-                {/* Buttons */}
-                <div className="flex gap-4 pt-4">
-                  {project.github && (
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-600/50 transition-all"
-                    >
-                      <FiGithub size={20} />
-                      <span>Código</span>
-                    </motion.a>
-                  )}
-                  {project.demo !== '#' && (
-                    <motion.a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 border-2 border-purple-500 text-purple-300 rounded-full hover:bg-purple-700/30 transition-all"
-                    >
-                      <FiExternalLink size={20} />
-                      <span>Demo</span>
-                    </motion.a>
-                  )}
+              <div className="flex sm:flex-col gap-2 shrink-0">
+                {featured.github && (
+                  <motion.a
+                    href={featured.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="flex items-center gap-2 px-4 py-2 bg-red-800 hover:bg-red-700 text-white rounded font-bold text-sm transition-all"
+                  >
+                    <FiGithub size={15} /> CÃ³digo
+                  </motion.a>
+                )}
+                {featured.demo !== '#' && (
+                  <motion.a
+                    href={featured.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="flex items-center gap-2 px-4 py-2 border border-red-700 text-red-300 hover:bg-red-950/40 rounded font-bold text-sm transition-all"
+                  >
+                    <FiExternalLink size={15} /> Demo
+                  </motion.a>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Project Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+          {rest.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="group relative"
+            >
+              <div className="relative h-full rounded-xl overflow-hidden border border-red-800/30 hover:border-red-600/50 bg-red-950/15 hover:bg-red-950/25 p-5 transition-all">
+                <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${project.accent}`} />
+                <span className="text-xs font-bold text-red-400 uppercase tracking-wider mb-2 block">
+                  {project.category}
+                </span>
+                <h4 className="text-sm font-black font-serif text-white leading-tight mb-2 group-hover:text-red-200 transition-colors">
+                  {project.title}
+                </h4>
+                <p className="text-xs text-gray-400 leading-relaxed mb-3 line-clamp-2">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {project.tags.slice(0, 2).map((tag) => (
+                    <span key={tag} className="px-1.5 py-0.5 bg-red-900/40 text-red-300 rounded text-xs">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
+                {project.github && (
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.2 }}
+                    className="text-red-400 hover:text-white transition-colors inline-block"
+                  >
+                    <FiGithub size={13} />
+                  </motion.a>
+                )}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* View More */}
+        {/* Footer CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-24"
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-red-800/30"
         >
-          <a
-            href="https://github.com/andream001?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-semibold text-lg transition-colors"
-          >
-            Explorar todos os projetos no GitHub
-            <FiExternalLink className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          <p className="text-sm text-gray-400">Mais projetos disponÃ­veis no GitHub</p>
+          <div className="flex gap-3">
+            <motion.a
+              href="https://github.com/andream001?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-700 hover:bg-red-600 text-white rounded text-sm font-semibold transition-all"
+            >
+              <FiGithub size={16} /> Ver no GitHub
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-red-700 text-red-300 hover:bg-red-950/40 rounded text-sm font-semibold transition-all"
+            >
+              Fale Comigo
+            </motion.a>
+          </div>
         </motion.div>
+
       </div>
     </section>
   )
 }
+

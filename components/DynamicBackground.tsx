@@ -177,9 +177,7 @@ export default function DynamicBackground({
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-screen -z-10"
       style={{
-        background: darkMode
-          ? 'radial-gradient(circle at center, #0f172a 0%, #0a0e27 100%)'
-          : 'radial-gradient(circle at center, #1a0f2e 0%, #0a0515 100%)',
+        background: '#050507',
       }}
     />
   )

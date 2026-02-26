@@ -28,7 +28,7 @@ export default function Header() {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            className="text-2xl font-bold bg-gradient-to-r from-red-600 to-amber-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
           >
             AB
           </motion.div>
@@ -44,7 +44,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-purple-600 transition-colors font-medium"
+                className="text-gray-700 hover:text-red-600 transition-colors font-medium"
               >
                 {item.label}
               </Link>
@@ -52,7 +52,7 @@ export default function Header() {
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all"
+              className="bg-gradient-to-r from-red-700 to-amber-600 text-white px-6 py-2 rounded hover:shadow-lg transition-all"
             >
               Contato
             </motion.a>

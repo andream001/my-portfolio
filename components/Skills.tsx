@@ -47,9 +47,8 @@ const skillVariants = {
 export default function Skills() {
   return (
     <section id="skills" className="py-28 bg-transparent text-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-800/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-700/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+      {/* Background glow */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-red-950/15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         {/* Section Header */}
@@ -60,11 +59,11 @@ export default function Skills() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
-            Minhas Habilidades
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif text-white">
+            Arsenal Técnico
           </h2>
-          <p className="text-xl text-purple-300 max-w-2xl mx-auto">
-            Tecnologias e ferramentas que utilizo para transformar ideias em realidade
+          <p className="text-base text-white/50 max-w-2xl mx-auto">
+            Ferramentas certificadas em campo. Sem dependências desnecessárias.
           </p>
         </motion.div>
 
@@ -85,16 +84,16 @@ export default function Skills() {
                   y: -8,
                   rotate: 5,
                 }}
-                className="flex flex-col items-center justify-center p-6 bg-purple-800/20 backdrop-blur-xl rounded-2xl border border-purple-700/40 hover:border-purple-500/70 hover:bg-purple-700/30 transition-all cursor-pointer group"
+                className="flex flex-col items-center justify-center p-6 bg-white/[0.03] border border-white/10 hover:border-white/25 hover:bg-white/[0.06] transition-all cursor-pointer group"
               >
-                <div className="mb-4 p-4 bg-purple-800/30 rounded-xl group-hover:bg-purple-700/40 transition-colors">
+                <div className="mb-4 p-4 bg-white/[0.05] group-hover:bg-white/[0.09] transition-colors">
                   <Icon
                     size={48}
                     style={{ color: skill.color }}
                     className="group-hover:scale-110 transition-transform"
                   />
                 </div>
-                <span className="text-sm font-medium text-purple-300 text-center">
+                <span className="text-sm font-medium text-white/60 group-hover:text-white/90 transition-colors text-center">
                   {skill.name}
                 </span>
               </motion.div>
@@ -110,19 +109,19 @@ export default function Skills() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center"
         >
-          <p className="text-xl text-purple-300 mb-8">
-            💡 Vou encontrar e entregar a melhor solução de tecnologia para seu negócio
+          <p className="text-base text-white/55 mb-4">
+            FATO: Ferramentas superiores produzem resultados superiores.
           </p>
-          <p className="text-lg text-purple-400 mb-8">
-            Aberto para colaborações & oportunidades freelance
+          <p className="text-sm text-white/35 mb-8">
+            Disponível para colaborações e projetos freelance.
           </p>
           <motion.a
             href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-full font-semibold hover:shadow-xl hover:shadow-purple-600/50 transition-all"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block px-8 py-3 bg-white text-black font-bold tracking-wide text-sm hover:bg-gray-100 transition-colors"
           >
-            Vamos Conversar
+            INICIAR MISSÃO
           </motion.a>
         </motion.div>
       </div>

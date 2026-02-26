@@ -11,7 +11,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-28 bg-transparent">
+    <section id="contact" className="py-20 bg-transparent">
       <div className="container mx-auto px-6 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -22,10 +22,10 @@ export default function Contact() {
         >
           {/* Header */}
           <h2 className="text-5xl md:text-6xl font-bold mb-6 font-serif text-white">
-            Vamos Trabalhar Juntos
+            Iniciar Missão
           </h2>
-          <p className="text-xl text-purple-200 mb-12 leading-relaxed max-w-2xl mx-auto">
-            Tem uma ideia em mente? Adoraria ouvir sobre seu projeto e como posso ajudar!
+          <p className="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+            Descreva os objetivos do seu projeto com precisão. Responderei com eficiência e sem rodeios.
           </p>
 
           {/* Main CTA */}
@@ -33,7 +33,7 @@ export default function Contact() {
             href="mailto:andrebunhak14@gmail.com"
             whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-purple-600/50 transition-all mb-16"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-red-800 to-red-900 text-white px-8 py-4 rounded font-semibold text-lg hover:shadow-2xl hover:shadow-red-800/50 transition-all mb-16"
           >
             <FiMail size={24} />
             <span>Enviar E-mail</span>
@@ -41,9 +41,9 @@ export default function Contact() {
           </motion.a>
 
           {/* Social Links */}
-          <div className="mb-12">
-            <p className="text-purple-300 mb-8 font-medium">Ou me encontre em:</p>
-            <div className="flex justify-center gap-6">
+          <div className="mb-16">
+            <p className="text-gray-300 mb-8 font-medium text-base">Ou me encontre em:</p>
+            <div className="flex justify-center gap-8">
               {socials.map((social, index) => {
                 const Icon = social.icon
                 return (
@@ -58,7 +58,7 @@ export default function Contact() {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.2, y: -8 }}
                     whileTap={{ scale: 0.9 }}
-                    className={`p-4 bg-purple-800/40 rounded-full shadow-md text-purple-300 hover:text-purple-100 hover:bg-purple-700/60 transition-all hover:shadow-lg hover:shadow-purple-500/50`}
+                    className="p-4 bg-red-950/50 rounded shadow-md text-red-200 hover:text-white hover:bg-red-800 transition-all hover:shadow-lg hover:shadow-red-700/50"
                   >
                     <Icon size={28} />
                   </motion.a>
@@ -73,10 +73,10 @@ export default function Contact() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="p-6 bg-purple-800/30 rounded-2xl shadow-lg border-l-4 border-purple-600"
+            className="p-6 bg-red-950/40 rounded-2xl shadow-lg border-l-4 border-red-700"
           >
-            <p className="text-purple-200">
-              <span className="font-semibold text-purple-300">✓ Respondo em até 24 horas</span>
+            <p className="text-gray-200">
+              <span className="font-semibold text-red-300">⚠ FATO: Resposta garantida em até 24 horas. Sem exceções.</span>
             </p>
           </motion.div>
         </motion.div>

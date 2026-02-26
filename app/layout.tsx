@@ -33,11 +33,11 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${montserrat.variable} ${cormorant.variable}`}>
       <body className="font-sans antialiased">
         <DynamicBackground
-          particleCount={60}
-          particleColor="rgba(168, 85, 247, 0.8)"
-          connectionColor="rgba(124, 58, 237, 0.5)"
-          connectionDistance={150}
-          interactive={true}
+          particleCount={20}
+          particleColor="rgba(185, 28, 28, 0.35)"
+          connectionColor="rgba(120, 53, 15, 0.18)"
+          connectionDistance={120}
+          interactive={false}
           darkMode={true}
         />
         <Header />
