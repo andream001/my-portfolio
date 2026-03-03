@@ -4,6 +4,16 @@
 
 @layer base {
   body {
-    @apply text-gray-900;
+    color: #e4e4e7;
   }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }

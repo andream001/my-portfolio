@@ -24,7 +24,7 @@ export default function Contact() {
           <h2 className="text-5xl md:text-6xl font-bold mb-6 font-serif text-white">
             Iniciar Missão
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-zinc-200 mb-12 leading-relaxed max-w-2xl mx-auto">
             Descreva os objetivos do seu projeto com precisão. Responderei com eficiência e sem rodeios.
           </p>
 
@@ -42,7 +42,7 @@ export default function Contact() {
 
           {/* Social Links */}
           <div className="mb-16">
-            <p className="text-gray-300 mb-8 font-medium text-base">Ou me encontre em:</p>
+            <p className="text-zinc-300 mb-8 font-medium text-base">Ou me encontre em:</p>
             <div className="flex justify-center gap-8">
               {socials.map((social, index) => {
                 const Icon = social.icon
@@ -58,7 +58,7 @@ export default function Contact() {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.2, y: -8 }}
                     whileTap={{ scale: 0.9 }}
-                    className="p-4 bg-red-950/50 rounded shadow-md text-red-200 hover:text-white hover:bg-red-800 transition-all hover:shadow-lg hover:shadow-red-700/50"
+                    className="p-4 bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-white/[0.08] hover:border-white/25 transition-all"
                   >
                     <Icon size={28} />
                   </motion.a>
@@ -73,10 +73,10 @@ export default function Contact() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="p-6 bg-red-950/40 rounded-2xl shadow-lg border-l-4 border-red-700"
+            className="p-6 border border-white/[0.08] bg-white/[0.02]"
           >
-            <p className="text-gray-200">
-              <span className="font-semibold text-red-300">⚠ FATO: Resposta garantida em até 24 horas. Sem exceções.</span>
+            <p className="text-zinc-200">
+              <span className="font-semibold text-red-400">⚠ FATO: Resposta garantida em até 24 horas. Sem exceções.</span>
             </p>
           </motion.div>
         </motion.div>

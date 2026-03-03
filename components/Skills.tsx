@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   SiNextdotjs,
@@ -15,104 +16,101 @@ import {
   SiVercel,
   SiFirebase,
 } from 'react-icons/si'
+import type { IconType } from 'react-icons'
 
-const skills = [
-  { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
-  { name: 'React', icon: SiReact, color: '#61DAFB' },
-  { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-  { name: 'Tailwind', icon: SiTailwindcss, color: '#06B6D4' },
-  { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
-  { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
-  { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  { name: 'Git', icon: SiGit, color: '#F05032' },
-  { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
-  { name: 'Vercel', icon: SiVercel, color: '#000000' },
-  { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+const skills: { name: string; Icon: IconType; color: string }[] = [
+  { name: 'Next.js',    Icon: SiNextdotjs,   color: '#ffffff' },
+  { name: 'React',      Icon: SiReact,       color: '#61DAFB' },
+  { name: 'TypeScript', Icon: SiTypescript,  color: '#3178C6' },
+  { name: 'JavaScript', Icon: SiJavascript,  color: '#F7DF1E' },
+  { name: 'Tailwind',   Icon: SiTailwindcss, color: '#06B6D4' },
+  { name: 'HTML5',      Icon: SiHtml5,       color: '#E34F26' },
+  { name: 'CSS3',       Icon: SiCss3,        color: '#1572B6' },
+  { name: 'Node.js',    Icon: SiNodedotjs,   color: '#339933' },
+  { name: 'Git',        Icon: SiGit,         color: '#F05032' },
+  { name: 'Figma',      Icon: SiFigma,       color: '#F24E1E' },
+  { name: 'Vercel',     Icon: SiVercel,      color: '#ffffff' },
+  { name: 'Firebase',   Icon: SiFirebase,    color: '#FFCA28' },
 ]
 
-const skillVariants = {
-  hidden: { opacity: 0, scale: 0.3 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delay: i * 0.05,
-      duration: 0.4,
-      ease: 'easeOut',
-    },
-  }),
+function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
+  const [paused, setPaused] = useState(false)
+  const items = [...skills, ...skills]
+  return (
+    <div
+      className="relative overflow-hidden py-6"
+      style={{
+        maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+      }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        className="flex gap-16"
+        style={{
+          width: 'max-content',
+          animation: reverse
+            ? 'marquee-reverse 30s linear infinite'
+            : 'marquee 30s linear infinite',
+          animationPlayState: paused ? 'paused' : 'running',
+        }}
+      >
+        {items.map((skill, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-3 flex-shrink-0 transition-transform duration-200 ease-out hover:scale-125 cursor-default"
+          >
+            <skill.Icon size={24} style={{ color: skill.color }} />
+            <span className="text-zinc-300 font-medium text-sm whitespace-nowrap tracking-wide">
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function Skills() {
   return (
     <section id="skills" className="py-28 bg-transparent text-white relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-950/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-red-950/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-6 max-w-6xl relative z-10">
-        {/* Section Header */}
+      <div className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-16 px-6"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif text-white">
             Arsenal Técnico
           </h2>
-          <p className="text-base text-white/50 max-w-2xl mx-auto">
+          <p className="text-base text-zinc-300 max-w-2xl mx-auto">
             Ferramentas certificadas em campo. Sem dependências desnecessárias.
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-20">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon
-            return (
-              <motion.div
-                key={skill.name}
-                custom={index}
-                initial="hidden"
-                whileInView="visible"
-                variants={skillVariants}
-                viewport={{ once: true }}
-                whileHover={{
-                  scale: 1.15,
-                  y: -8,
-                  rotate: 5,
-                }}
-                className="flex flex-col items-center justify-center p-6 bg-white/[0.03] border border-white/10 hover:border-white/25 hover:bg-white/[0.06] transition-all cursor-pointer group"
-              >
-                <div className="mb-4 p-4 bg-white/[0.05] group-hover:bg-white/[0.09] transition-colors">
-                  <Icon
-                    size={48}
-                    style={{ color: skill.color }}
-                    className="group-hover:scale-110 transition-transform"
-                  />
-                </div>
-                <span className="text-sm font-medium text-white/60 group-hover:text-white/90 transition-colors text-center">
-                  {skill.name}
-                </span>
-              </motion.div>
-            )
-          })}
+        <div className="border-y border-white/[0.06]">
+          <MarqueeRow />
+        </div>
+        <div className="border-b border-white/[0.06]">
+          <MarqueeRow reverse />
         </div>
 
-        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center"
+          className="text-center mt-20 px-6"
         >
-          <p className="text-base text-white/55 mb-4">
+          <p className="text-base text-zinc-200 mb-4">
             FATO: Ferramentas superiores produzem resultados superiores.
           </p>
-          <p className="text-sm text-white/35 mb-8">
+          <p className="text-sm text-zinc-400 mb-8">
             Disponível para colaborações e projetos freelance.
           </p>
           <motion.a
