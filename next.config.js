@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Build standalone para Azure Static Web Apps (SSR + recursos dinâmicos)
-  output: 'standalone',
+  // Export estático para Azure Static Web Apps
+  output: 'export',
 
-  // Otimização de imagens habilitada para build dinâmico
+  // Desabilitar otimização de imagens para export estático
   images: {
-    unoptimized: false,
+    unoptimized: true,
   },
 }
 
