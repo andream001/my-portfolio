@@ -2,6 +2,10 @@
 logs
 *.log
 
+# Next.js build output
+.next
+out
+
 # Build files generated from Parcel
 dist
 
