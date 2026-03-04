@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
 import DynamicBackground from '@/components/DynamicBackground'
+import CustomCursor from '@/components/CustomCursor'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({
           interactive={false}
           darkMode={true}
         />
+        <CustomCursor />
         <Header />
         <main>{children}</main>
         <Footer />

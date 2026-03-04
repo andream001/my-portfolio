@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Para Azure, GitHub Pages e exportação estática
-  output: process.env.EXPORT === 'true' ? 'export' : undefined,
-  
-  // Otimizar imagens
+  // Build standalone para Azure Static Web Apps (SSR + recursos dinâmicos)
+  output: 'standalone',
+
+  // Otimização de imagens habilitada para build dinâmico
   images: {
-    unoptimized: process.env.EXPORT === 'true' ? true : false,
+    unoptimized: false,
   },
 }
 

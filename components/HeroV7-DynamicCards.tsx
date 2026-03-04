@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiArrowRight, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi'
 import { useState, useEffect } from 'react'
 
 const WRONG_NAME = 'Dwight Schrute'
@@ -13,32 +13,6 @@ const stats = [
   { value: '20+', label: 'Missões' },
   { value: '∞',   label: 'Beterrabas 🌱' },
 ]
-
-const ASCII_PORTRAIT = `
-           \`-/+ooooooo+/-\`
-        \`/yNNNNNNNNNNNNNNNNy/\`
-       /NNNNNNNNNNNNNNNNNNNNNNs
-      yNNNNNNNNNNNNNNNNNNNNNNNNy
-     :NNNNNNNNNNNNNNNNNNNNNNNNNy:
-     hNNNNN+-::::::::::-+NNNNNNNh
-     NNNNh.               .hNNNN
-     NNNd   .---.   .---.   dNNN
-     NNs   /  o  \./  o  \   sNN
-     NN:  |[=====]|[=====]|  :NN
-     NN:   \\-----/ \\-----/   :NN
-     NNN      .----------.    NNN
-     NNNs     |  ------  |   sNNN
-     NNNNs.   \`----------\`  .sNNNN
-     yNNNNNNs.           .sNNNNNy
-      :NNNNNNNNNNssNNNNNNNNNNN:
-       \`+yNNNNNNNNNNNNNNNNNy+\`
-           \`-:/+syys+/:-\`
-       ________________________
-      |                        |
-      |   DWIGHT K. SCHRUTE    |
-      |   Fazenda de Beterraba |
-      |________________________|
-`
 
 export default function HeroV7DynamicCards() {
   const [displayName, setDisplayName] = useState('')
@@ -79,25 +53,6 @@ export default function HeroV7DynamicCards() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-transparent px-6">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-950/15 rounded-full blur-3xl pointer-events-none" />
-
-      <pre
-        aria-hidden
-        className="absolute z-0 pointer-events-none select-none"
-        style={{
-          fontFamily: 'monospace',
-          fontSize: '0.82rem',
-          lineHeight: '1.3',
-          color: '#f87171',
-          opacity: 0.13,
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-20%, -50%)',
-          whiteSpace: 'pre',
-          textAlign: 'left',
-        }}
-      >
-        {ASCII_PORTRAIT}
-      </pre>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -173,6 +128,14 @@ export default function HeroV7DynamicCards() {
           >
             ESTABELECER CONTATO
           </a>
+          <a
+            href="/dossie.pdf"
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 border border-red-400/30 text-red-400 font-bold text-sm tracking-wide hover:border-red-400/70 hover:text-red-300 transition-colors font-mono"
+          >
+            <FiDownload size={14} />
+            BAIXAR DOSSIÊ
+          </a>
         </motion.div>
 
         <motion.div
@@ -182,6 +145,7 @@ export default function HeroV7DynamicCards() {
           className="flex justify-center gap-3 mb-16"
         >
           {[
+
             { Icon: FiGithub,   href: 'https://github.com/andream001',            label: 'GitHub' },
             { Icon: FiLinkedin, href: 'https://www.linkedin.com/in/andrebunhak/', label: 'LinkedIn' },
             { Icon: FiMail,     href: 'mailto:andrebunhak14@gmail.com',           label: 'Email' },
@@ -197,6 +161,7 @@ export default function HeroV7DynamicCards() {
               <Icon size={16} />
             </a>
           ))}
+
         </motion.div>
 
         <motion.div
@@ -205,12 +170,33 @@ export default function HeroV7DynamicCards() {
           transition={{ delay: 0.65 }}
           className="w-full grid grid-cols-4 border-t border-white/[0.08] pt-8"
         >
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center gap-1">
-              <span className="text-xl font-black text-white">{s.value}</span>
-              <span className="text-xs text-zinc-400 uppercase tracking-wider">{s.label}</span>
-            </div>
-          ))}
+          {stats.map((s) => {
+            const isInfinity = s.value === '∞'
+            return (
+              <div
+                key={s.label}
+                className={`flex flex-col items-center gap-1 group ${isInfinity ? 'cursor-default' : ''}`}
+              >
+                <span className={`relative text-xl font-black transition-all duration-300 ${
+                  isInfinity
+                    ? 'text-white group-hover:text-red-400 group-hover:scale-125 inline-block'
+                    : 'text-white'
+                }`}>
+                  {s.value}
+                  {isInfinity && (
+                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-mono text-red-400/80 whitespace-nowrap normal-case tracking-normal font-normal">
+                      🌱 beterrabas
+                    </span>
+                  )}
+                </span>
+                <span className={`text-xs uppercase tracking-wider transition-colors duration-300 ${
+                  isInfinity ? 'text-zinc-400 group-hover:text-red-400/60' : 'text-zinc-400'
+                }`}>
+                  {s.label}
+                </span>
+              </div>
+            )
+          })}
         </motion.div>
       </motion.div>
 
